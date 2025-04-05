@@ -62,7 +62,8 @@ class LaunchAppAction(BaseAction):
                 logger.warning("On some systems with outdated systemd or incorrect permissions this doesn't work.")
                 logger.warning("If this happens to you, don't run Ulauncher from systemd.")
                 # exec = ['systemd-run', '--user', '--scope'] + exec
-                exec = ["uwsm-app", *exec]
+                logger.warning(" ".join(exec))
+                exec = ["uwsm", "app", "--", *exec]
 
             env = dict(os.environ.items())
             # Make sure GDK apps aren't forced to use x11 on wayland due to ulauncher's need to run
